@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import lantern from '../assets/site/decor-lantern-grass.png';
 import mushrooms from '../assets/site/decor-mushrooms-grass.png';
+import flowerBorder from '../assets/site/flower-border.png';
 
 const team = [
 	'Judith Moser',
@@ -15,6 +16,14 @@ const team = [
 ---
 
 <footer class="footer" id="impressum">
+	<Image
+		src={flowerBorder}
+		alt=""
+		aria-hidden="true"
+		class="footer__flowers"
+		widths={[800, 1200, 1600, 2000]}
+		sizes="100vw"
+	/>
 	<div class="footer__stage">
 		<Image
 			src={lantern}
@@ -69,6 +78,15 @@ const team = [
 		overflow: hidden;
 		background:
 			linear-gradient(180deg, transparent 0%, rgba(90, 130, 70, 0.12) 35%, #4a7240 100%);
+	}
+
+	.footer__flowers {
+		display: block;
+		width: 100%;
+		height: clamp(3.5rem, 9vw, 6rem);
+		object-fit: cover;
+		object-position: center 30%;
+		pointer-events: none;
 	}
 
 	.footer__stage {
