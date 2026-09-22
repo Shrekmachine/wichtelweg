@@ -37,6 +37,7 @@ Public website for **Westhofener Wichtelweg** — a family- and child-friendly s
 - Dev: `npm run dev`
 - Build: `npm run build`
 - Deploy: push to `main` (Pages Git) or `npm run pages:deploy` after `wrangler login`
+- **Energie** (user shortcut): commit → push → cleanup unused temp files → confirm Pages deploy
 
 ## Conventions
 

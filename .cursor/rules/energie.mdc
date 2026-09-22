@@ -1,0 +1,16 @@
+---
+description: Kurzbefehl „Energie“ = commit, push, Cleanup, Deploy
+alwaysApply: true
+---
+
+# Kurzbefehl: Energie
+
+Wenn der Nutzer **Energie** (oder „energie“) schreibt, bedeutet das:
+
+1. **Commit** aller relevanten Änderungen (sinnvolle Message, keine Secrets)
+2. **Push** nach `origin` (aktueller Branch)
+3. **Cleanup** ungenutzter Temp-/Crop-Dateien und Arbeitsbaum-Müll, soweit sicher
+4. **Deploy** falls nötig — bei diesem Projekt reicht Push auf `main` (Cloudflare Pages Git-Connect); sonst `npm run pages:deploy` / Build-Status prüfen
+
+Nicht nachfragen, ob committed werden soll — der Befehl *ist* die Freigabe.
+Bei leerem Working Tree: kurz Status melden (nichts zu committen / Deploy bereits aktuell).
