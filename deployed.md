@@ -11,6 +11,8 @@
 
 Cloudflare account used for this project: the account connected via Cursor Cloudflare MCP (Workers & Pages).
 
+**Status:** GitHub connected; production deploys on push to `main`. Live at https://wichtelweg.pages.dev (first successful deploy: commit `770957b`).
+
 ## Build settings (Pages)
 
 | Setting | Value |

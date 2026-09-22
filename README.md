@@ -4,7 +4,7 @@ Website für den Westhofener Wichtelweg – **Astro** (statisch) und **Cloudflar
 
 - Geplante Domain: [westhofenerwichtel.de](https://westhofenerwichtel.de)
 - GitHub: [Shrekmachine/wichtelweg](https://github.com/Shrekmachine/wichtelweg)
-- Pages: [wichtelweg.pages.dev](https://wichtelweg.pages.dev) (nach erstem Deploy)
+- Pages: [wichtelweg.pages.dev](https://wichtelweg.pages.dev)
 - Deploy-Details: [`deployed.md`](./deployed.md)
 - Design-Vorgabe: `design/vorgabe-homepage-landingpage.jpg`
 
