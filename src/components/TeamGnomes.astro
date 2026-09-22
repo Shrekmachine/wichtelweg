@@ -1,0 +1,89 @@
+---
+import { Image } from 'astro:assets';
+import gBasket from '../assets/site/sprites/a03.png';
+import gFishing from '../assets/site/sprites/b00.png';
+import gCoffee from '../assets/site/sprites/c02.png';
+import gDigging from '../assets/site/sprites/a11.png';
+import gHiking from '../assets/site/sprites/d01.png';
+import gReading from '../assets/site/sprites/a01.png';
+
+const gnomes = [
+	{ src: gReading, alt: 'Ein Wichtel liest ein Buch auf einem Baumstumpf' },
+	{ src: gFishing, alt: 'Ein Wichtel angelt gemütlich auf einem Baumstamm' },
+	{ src: gBasket, alt: 'Ein Wichtel trägt einen Korb voller Pilze' },
+	{ src: gCoffee, alt: 'Ein Wichtel hält eine Tasse mit einem Herz darauf' },
+	{ src: gDigging, alt: 'Ein Wichtel gräbt mit einem kleinen Spaten' },
+	{ src: gHiking, alt: 'Ein Wichtel wandert mit Rucksack und Wanderstab' },
+];
+---
+
+<section class="team" aria-labelledby="team-title">
+	<header class="team__head">
+		<h2 id="team-title" class="team__title script">Trefft die Wichtel</h2>
+		<p class="team__lede">So treiben sie sich entlang des Weges herum</p>
+	</header>
+	<ul class="team__row">
+		{
+			gnomes.map((g) => (
+				<li class="team__item">
+					<Image src={g.src} alt={g.alt} widths={[140, 200, 260]} sizes="150px" />
+				</li>
+			))
+		}
+	</ul>
+</section>
+
+<style>
+	.team {
+		max-width: 64rem;
+		margin: 0 auto;
+		padding: clamp(1.5rem, 4vw, 2.5rem) 1rem 1rem;
+		text-align: center;
+	}
+
+	.team__title {
+		margin: 0;
+		font-size: clamp(2.2rem, 5.5vw, 3.2rem);
+		color: var(--color-ink);
+	}
+
+	.team__lede {
+		margin: 0.35rem 0 1.75rem;
+		color: var(--color-ink-soft);
+		font-size: 1.05rem;
+	}
+
+	.team__row {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-end;
+		justify-content: center;
+		gap: clamp(0.5rem, 2vw, 1.25rem);
+	}
+
+	.team__item {
+		width: clamp(6rem, 15vw, 8.5rem);
+	}
+
+	.team__item :global(img) {
+		width: 100%;
+		height: auto;
+		display: block;
+		filter: drop-shadow(0 10px 14px rgba(40, 22, 10, 0.22));
+		transition: transform 0.2s ease;
+	}
+
+	.team__item:hover :global(img),
+	.team__item:focus-within :global(img) {
+		transform: translateY(-0.35rem);
+	}
+
+	@media (max-width: 560px) {
+		.team__item {
+			width: clamp(5rem, 26vw, 6.5rem);
+		}
+	}
+</style>

@@ -1,7 +1,5 @@
 ---
 import { Image } from 'astro:assets';
-import lantern from '../assets/site/decor-lantern-grass.png';
-import mushrooms from '../assets/site/decor-mushrooms-grass.png';
 import flowerBorder from '../assets/site/flower-border.png';
 
 const team = [
@@ -17,23 +15,6 @@ const team = [
 
 <footer class="footer" id="impressum">
 	<div class="footer__stage">
-		<Image
-			src={lantern}
-			alt=""
-			class="footer__decor footer__decor--lantern"
-			widths={[220, 320]}
-			sizes="160px"
-			aria-hidden="true"
-		/>
-		<Image
-			src={mushrooms}
-			alt=""
-			class="footer__decor footer__decor--mushrooms"
-			widths={[220, 320]}
-			sizes="160px"
-			aria-hidden="true"
-		/>
-
 		<div class="footer__scroll">
 			<div class="footer__legal">
 				<h2 class="footer__title script">Impressum</h2>
@@ -81,52 +62,24 @@ const team = [
 	}
 
 	.footer__flowers {
+		/* Shown at its full, natural height (no object-fit crop) and pulled up
+		   with a negative margin so the Impressum card's bottom overlaps its
+		   top edge — z-index below .footer__scroll so the opaque card always
+		   paints over it, never the other way round. */
+		position: relative;
+		z-index: 0;
 		display: block;
 		width: 100%;
-		height: clamp(3.5rem, 9vw, 6rem);
-		object-fit: cover;
-		object-position: center 30%;
+		height: auto;
+		margin-top: -3.5rem;
 		pointer-events: none;
 	}
 
 	.footer__stage {
-		/* flow-root: without this, footer__scroll's bottom margin collapses
-		   straight through (no padding/border-bottom here to stop it), so the
-		   stage's auto height ends at the card's edge instead of past its
-		   margin — which put the decor (anchored at bottom:0) behind the card. */
-		display: flow-root;
 		position: relative;
 		max-width: 58rem;
 		margin: 0 auto;
 		padding: 1.5rem 1rem 0;
-	}
-
-	.footer__decor {
-		position: absolute;
-		/* Below .footer__scroll (z-index: 1): the opaque Impressum card must always
-		   paint over the decor, never the other way round, so team names/links
-		   stay fully legible even where the two boxes' bounds overlap. */
-		z-index: 0;
-		/* Kept well under footer__scroll's bottom margin (7rem) below, so the
-		   decor sits fully in the grass gap under the card, never behind it. */
-		width: clamp(4rem, 13vw, 6rem);
-		height: auto;
-		pointer-events: none;
-		filter: drop-shadow(0 8px 14px rgba(30, 20, 10, 0.25));
-		/* Die Quellbilder haben keinen Alpha-Kanal (fester Pergament-Hintergrund) –
-		   Kanten weich in den grünen Footer-Verlauf ausblenden statt hartes Rechteck zu zeigen. */
-		mask-image: radial-gradient(ellipse 62% 62% at 50% 58%, black 58%, transparent 96%);
-		-webkit-mask-image: radial-gradient(ellipse 62% 62% at 50% 58%, black 58%, transparent 96%);
-	}
-
-	.footer__decor--lantern {
-		left: -0.25rem;
-		bottom: 0;
-	}
-
-	.footer__decor--mushrooms {
-		right: -0.25rem;
-		bottom: 0;
 	}
 
 	.footer__scroll {
@@ -135,7 +88,7 @@ const team = [
 		display: grid;
 		grid-template-columns: 1fr 1.15fr;
 		gap: 1.25rem;
-		margin: 0 auto 7rem;
+		margin: 0 auto 2.5rem;
 		padding: 1.4rem 1.5rem 1.6rem;
 		color: var(--color-ink);
 		background:
@@ -187,10 +140,6 @@ const team = [
 	@media (max-width: 720px) {
 		.footer__scroll {
 			grid-template-columns: 1fr;
-		}
-
-		.footer__decor {
-			width: clamp(3rem, 16vw, 4.5rem);
 		}
 	}
 </style>

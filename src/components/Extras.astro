@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import comicsBoard from '../assets/site/comics-board.png';
 import lantern from '../assets/site/decor-lantern-grass.png';
 import mushrooms from '../assets/site/decor-mushrooms-grass.png';
+import peekingGnome from '../assets/site/sprites/c03.png';
 import CornerDecor from './CornerDecor.astro';
 ---
 
@@ -17,6 +18,14 @@ import CornerDecor from './CornerDecor.astro';
 			widths={[495, 740, 990]}
 			sizes="(max-width: 760px) 92vw, 420px"
 			class="extras__comics-art"
+		/>
+		<Image
+			src={peekingGnome}
+			alt=""
+			aria-hidden="true"
+			class="extras__peeker"
+			widths={[110, 160, 220]}
+			sizes="110px"
 		/>
 	</article>
 
@@ -50,6 +59,7 @@ import CornerDecor from './CornerDecor.astro';
 	}
 
 	.extras__comics {
+		position: relative;
 		margin: 0;
 		text-align: center;
 	}
@@ -59,6 +69,21 @@ import CornerDecor from './CornerDecor.astro';
 		margin-inline: auto;
 		height: auto;
 		filter: drop-shadow(0 14px 24px rgba(40, 22, 10, 0.22));
+	}
+
+	.extras__peeker {
+		position: absolute;
+		right: clamp(-0.5rem, 4vw, 1.5rem);
+		bottom: -0.75rem;
+		width: clamp(3rem, 8vw, 4.25rem);
+		height: auto;
+		filter: drop-shadow(0 8px 10px rgba(40, 22, 10, 0.25));
+	}
+
+	@media (max-width: 560px) {
+		.extras__peeker {
+			display: none;
+		}
 	}
 
 	.extras__game-inner {
