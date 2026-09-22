@@ -6,12 +6,32 @@
 | --- | --- |
 | GitHub | https://github.com/Shrekmachine/wichtelweg |
 | Cloudflare Pages project | `wichtelweg` |
-| Preview subdomain | https://wichtelweg.pages.dev |
-| Custom domain (pending) | `westhofenerwichtel.de` |
+| Pages preview | https://wichtelweg.pages.dev |
+| Custom domain | https://westhofenerwichtel.de (+ `www`) |
 
-Cloudflare account used for this project: the account connected via Cursor Cloudflare MCP (Workers & Pages).
+Cloudflare account: **Krav Maga Südwest** (same account as the Pages project).
 
-**Status:** GitHub connected; production deploys on push to `main`. Live at https://wichtelweg.pages.dev (first successful deploy: commit `770957b`).
+**Pages:** Git-Connect on `main` → build `npm run build` → output `dist`.
+
+## Custom domain setup (2026-09-22)
+
+Done in Cloudflare:
+
+- Pages custom domains: `westhofenerwichtel.de`, `www.westhofenerwichtel.de`
+- DNS CNAMEs (proxied) → `wichtelweg.pages.dev`
+- Mail left intact: MX + SPF TXT (Netcup)
+- `autoconfig` set to DNS-only (not proxied)
+
+### Action required at the registrar (Netcup)
+
+Zone status is still **pending**. Cloudflare DNS is not authoritative until nameservers are switched.
+
+Set these nameservers at Netcup (Domain → Nameserver):
+
+1. `clyde.ns.cloudflare.com`
+2. `kami.ns.cloudflare.com`
+
+Remove the old Netcup nameservers (`netcup.firstns.cc`, etc.). Propagation can take minutes to a few hours. After that, SSL on the custom domains should finish automatically.
 
 ## Build settings (Pages)
 
@@ -21,29 +41,11 @@ Cloudflare account used for this project: the account connected via Cursor Cloud
 | Build command | `npm run build` |
 | Build output directory | `dist` |
 | Root directory | `/` |
-| Node | ≥ 22.12 (Astro engine requirement) |
+| Node | ≥ 22.12 |
 
-## First deploy options
-
-### A) Dashboard + Git (recommended for ongoing work)
-
-1. Open [Workers & Pages](https://dash.cloudflare.com/?to=/:account/workers-and-pages) → project **wichtelweg**.
-2. **Settings → Builds** → connect GitHub repository `Shrekmachine/wichtelweg` (Cloudflare Workers & Pages GitHub App).
-3. Confirm build settings above → save. Push to `main` triggers production deploys.
-
-### B) Local Wrangler (direct upload)
+## Local deploy fallback
 
 ```sh
 npx wrangler login
 npm run pages:deploy
 ```
-
-(`pages:deploy` = `npm run build` + `wrangler pages deploy dist --project-name=wichtelweg`)
-
-## Custom domain
-
-When `westhofenerwichtel.de` is ready:
-
-1. Add the domain in the Pages project (**Custom domains**).
-2. Point DNS at Cloudflare (or follow the Dashboard CNAME instructions).
-3. Update `site` in `astro.config.mjs` if the canonical URL changes (already set to `https://westhofenerwichtel.de`).
