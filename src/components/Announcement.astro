@@ -1,6 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 import lantern from '../assets/site/decor-lantern-grass.png';
+import mushrooms from '../assets/site/decor-mushrooms-grass.png';
+import CornerDecor from './CornerDecor.astro';
 ---
 
 <section class="announce" aria-labelledby="announce-title">
@@ -13,6 +15,7 @@ import lantern from '../assets/site/decor-lantern-grass.png';
 			sizes="120px"
 			aria-hidden="true"
 		/>
+		<CornerDecor src={mushrooms} corner="right" size="clamp(3.5rem, 9vw, 5rem)" bottom="-1rem" />
 		<h2 id="announce-title" class="announce__title script">Die Wichtel kommen wieder!</h2>
 		<p class="announce__dates">
 			<strong>Eröffnung:</strong> 21.11.2026
@@ -56,12 +59,16 @@ import lantern from '../assets/site/decor-lantern-grass.png';
 	}
 
 	.announce__title {
+		position: relative;
+		z-index: 1;
 		margin: 0 0 0.85rem;
 		font-size: clamp(2rem, 6vw, 3rem);
 		color: var(--color-ink);
 	}
 
 	.announce__dates {
+		position: relative;
+		z-index: 1;
 		margin: 0;
 		font-size: clamp(1rem, 2.4vw, 1.15rem);
 		color: var(--color-ink-soft);

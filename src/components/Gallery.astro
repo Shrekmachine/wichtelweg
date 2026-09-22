@@ -3,27 +3,35 @@ import { Image } from 'astro:assets';
 import galerie1 from '../assets/site/galerie-1.jpg';
 import galerie2 from '../assets/site/galerie-2.jpg';
 import galerie3 from '../assets/site/galerie-3.jpg';
+import lantern from '../assets/site/decor-lantern-grass.png';
+import mushrooms from '../assets/site/decor-mushrooms-grass.png';
+import CornerDecor from './CornerDecor.astro';
 
 const photos = [
 	{
 		src: galerie1,
-		alt: 'Holzschild „Wichtelweg“ mit Laterne und roter Wichtelmütze im Abendlicht',
+		alt: 'Holzschild „Wichtelweg” mit Laterne und roter Wichtelmütze im Abendlicht',
 		rotate: '-2.2deg',
+		position: 'left center',
 	},
 	{
 		src: galerie2,
 		alt: 'Ein Wichtel sitzt in einem kleinen Segelboot vor dem Dorf',
 		rotate: '1.4deg',
+		position: 'center',
 	},
 	{
 		src: galerie3,
 		alt: 'Ein Wichtel mit Brille liest bei Laternenlicht in einem Buch',
 		rotate: '-1.1deg',
+		position: 'center',
 	},
 ];
 ---
 
 <section class="gallery" id="bilder" aria-labelledby="bilder-title">
+	<CornerDecor src={lantern} corner="left" />
+	<CornerDecor src={mushrooms} corner="right" />
 	<header class="gallery__head">
 		<h2 id="bilder-title" class="gallery__title script">
 			Bilder <span class="gallery__heart" aria-hidden="true">♥</span>
@@ -34,9 +42,9 @@ const photos = [
 	<ul class="gallery__grid">
 		{
 			photos.map((photo) => (
-				<li class="gallery__item" style={`--tilt: ${photo.rotate}`}>
+				<li class="gallery__item" style={`--tilt: ${photo.rotate}; --pos: ${photo.position}`}>
 					<figure class="polaroid">
-						<Image src={photo.src} alt={photo.alt} widths={[320, 480, 640]} sizes="(max-width: 700px) 80vw, 280px" />
+						<Image src={photo.src} alt={photo.alt} width={photo.src.width} height={photo.src.height} />
 						<span class="polaroid__lens" aria-hidden="true" title="Ansehen" />
 					</figure>
 				</li>
@@ -47,10 +55,16 @@ const photos = [
 
 <style>
 	.gallery {
+		position: relative;
 		padding: clamp(2rem, 5vw, 3.5rem) 1rem 1rem;
 		max-width: 64rem;
 		margin: 0 auto;
 		text-align: center;
+	}
+
+	.gallery__head {
+		position: relative;
+		z-index: 1;
 	}
 
 	.gallery__title {
@@ -103,8 +117,9 @@ const photos = [
 
 	.polaroid :global(img) {
 		width: 100%;
-		aspect-ratio: 4 / 3;
+		aspect-ratio: 3 / 2;
 		object-fit: cover;
+		object-position: var(--pos, center);
 		border-radius: 0.1rem;
 	}
 

@@ -1,9 +1,14 @@
 ---
 import { Image } from 'astro:assets';
 import woodPlank from '../assets/site/wood-plank-banner.png';
+import lantern from '../assets/site/decor-lantern-grass.png';
+import mushrooms from '../assets/site/decor-mushrooms-grass.png';
+import CornerDecor from './CornerDecor.astro';
 ---
 
 <section class="parking" id="parkplaetze" aria-labelledby="parking-title">
+	<CornerDecor src={mushrooms} corner="left" size="clamp(3.25rem, 7vw, 4.75rem)" bottom="0.25rem" />
+	<CornerDecor src={lantern} corner="right" size="clamp(3.25rem, 7vw, 4.75rem)" bottom="0.25rem" />
 	<div class="parking__board">
 		<Image
 			src={woodPlank}
@@ -22,11 +27,13 @@ import woodPlank from '../assets/site/wood-plank-banner.png';
 
 <style>
 	.parking {
+		position: relative;
 		padding: 1.75rem 1rem 0.5rem;
 	}
 
 	.parking__board {
 		position: relative;
+		z-index: 1;
 		max-width: 42rem;
 		margin: 0 auto;
 		isolation: isolate;

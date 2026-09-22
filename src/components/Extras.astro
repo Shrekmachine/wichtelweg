@@ -2,9 +2,14 @@
 import { Image } from 'astro:assets';
 import comicsBoard from '../assets/site/comics-board.png';
 import gewinnspielArt from '../assets/gewinnspiel.jpg';
+import lantern from '../assets/site/decor-lantern-grass.png';
+import mushrooms from '../assets/site/decor-mushrooms-grass.png';
+import CornerDecor from './CornerDecor.astro';
 ---
 
 <section class="extras" aria-label="Comics und Gewinnspiel">
+	<CornerDecor src={mushrooms} corner="left" size="clamp(3.25rem, 6vw, 4.5rem)" bottom="-0.5rem" />
+	<CornerDecor src={lantern} corner="right" size="clamp(3.25rem, 6vw, 4.5rem)" bottom="-2.75rem" />
 	<article class="extras__comics" id="comics">
 		<h2 class="visually-hidden">Comics — Coming soon</h2>
 		<Image
@@ -37,6 +42,7 @@ import gewinnspielArt from '../assets/gewinnspiel.jpg';
 
 <style>
 	.extras {
+		position: relative;
 		max-width: 64rem;
 		margin: 0 auto;
 		padding: 1.75rem 1rem 1rem;
@@ -44,6 +50,12 @@ import gewinnspielArt from '../assets/gewinnspiel.jpg';
 		grid-template-columns: 1fr 1.1fr;
 		gap: 1.25rem;
 		align-items: center;
+	}
+
+	.extras__comics,
+	.extras__game {
+		position: relative;
+		z-index: 1;
 	}
 
 	.extras__comics {

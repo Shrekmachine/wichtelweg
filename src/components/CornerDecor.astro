@@ -1,0 +1,54 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+	src: ImageMetadata;
+	corner: 'left' | 'right';
+	size?: string;
+	bottom?: string;
+}
+
+const { src, corner, size = 'clamp(4rem, 9vw, 6.5rem)', bottom = '-0.75rem' } = Astro.props;
+---
+
+<Image
+	src={src}
+	alt=""
+	aria-hidden="true"
+	class={`corner-decor corner-decor--${corner}`}
+	style={`--decor-size:${size}; --decor-bottom:${bottom}`}
+	widths={[160, 240, 320]}
+	sizes={size}
+/>
+
+<style>
+	.corner-decor {
+		position: absolute;
+		bottom: var(--decor-bottom);
+		width: var(--decor-size);
+		height: auto;
+		z-index: 0;
+		opacity: 0.92;
+		pointer-events: none;
+		/* Quellbilder haben keinen Alpha-Kanal (fester Pergament-Hintergrund) –
+		   Kanten weich ausblenden statt hartes Rechteck zu zeigen. */
+		mask-image: radial-gradient(ellipse 60% 60% at 50% 58%, black 55%, transparent 92%);
+		-webkit-mask-image: radial-gradient(ellipse 60% 60% at 50% 58%, black 55%, transparent 92%);
+		filter: drop-shadow(0 8px 14px rgba(30, 20, 10, 0.22));
+	}
+
+	.corner-decor--left {
+		left: -1rem;
+	}
+
+	.corner-decor--right {
+		right: -1rem;
+	}
+
+	@media (max-width: 900px) {
+		.corner-decor {
+			display: none;
+		}
+	}
+</style>
