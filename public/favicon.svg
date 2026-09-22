@@ -1,7 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
-    <ellipse cx="64" cy="103" rx="38" ry="15" fill="#f3e6cf" />
+    <ellipse cx="64" cy="104" rx="40" ry="15" fill="#f3e6cf" />
+    <polygon points="24,103 84,103 56,20" fill="#b83228" />
     <path
-        d="M46 97 Q40 40 75 15 Q95 3 108 15 Q112 20 100 24 Q75 32 62 55 Q52 75 58 97 Z"
+        d="M50 34 Q56 14 76 13 Q96 12 94 24 Q92 34 76 35 Q62 36 50 34 Z"
         fill="#b83228"
     />
 </svg>
