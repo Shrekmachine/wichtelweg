@@ -1,0 +1,126 @@
+---
+/**
+ * Ankündigungs-Rolle – Texte und Daten laut Team-Vorgabe (Landingpage-Mockup).
+ */
+---
+
+<section class="announce" aria-labelledby="announce-title">
+	<div class="announce__scroll">
+		<span class="announce__lantern" aria-hidden="true" title="Laterne">🪔</span>
+		<span class="announce__sign" aria-hidden="true" title="Wegweiser">🪧</span>
+		<h2 id="announce-title" class="announce__title script">Die Wichtel kommen wieder!</h2>
+		<p class="announce__dates">
+			<span class="announce__cal" aria-hidden="true">📅</span>
+			<span>
+				<strong>Eröffnung:</strong> 21.11.2026
+				<span class="announce__sep" aria-hidden="true">–</span>
+				<strong>Ende:</strong> 10.01.2027
+			</span>
+		</p>
+	</div>
+</section>
+
+<style>
+	.announce {
+		padding: clamp(1.5rem, 4vw, 2.75rem) 1rem 0.5rem;
+	}
+
+	.announce__scroll {
+		position: relative;
+		max-width: 44rem;
+		margin: 0 auto;
+		padding: clamp(1.75rem, 4vw, 2.5rem) clamp(1.25rem, 4vw, 2.75rem);
+		text-align: center;
+		color: var(--color-ink);
+		background:
+			radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, 0.35), transparent 45%),
+			linear-gradient(135deg, var(--color-parchment) 0%, var(--color-parchment-deep) 55%, #dfc79a 100%);
+		border: 2px solid #c4a574;
+		border-radius: 1.25rem 1.25rem 1.5rem 1.5rem / 0.85rem 0.85rem 1.1rem 1.1rem;
+		box-shadow:
+			var(--shadow-soft),
+			inset 0 0 0 1px rgba(255, 248, 230, 0.55),
+			inset 0 0 40px rgba(140, 100, 50, 0.08);
+	}
+
+	.announce__scroll::before,
+	.announce__scroll::after {
+		content: '';
+		position: absolute;
+		top: 0.65rem;
+		bottom: 0.65rem;
+		width: 0.55rem;
+		border-radius: 999px;
+		background: linear-gradient(180deg, #d2b48c, #a67c52);
+		opacity: 0.55;
+	}
+
+	.announce__scroll::before {
+		left: 0.55rem;
+	}
+
+	.announce__scroll::after {
+		right: 0.55rem;
+	}
+
+	.announce__lantern,
+	.announce__sign {
+		position: absolute;
+		font-size: 1.7rem;
+		filter: drop-shadow(0 4px 6px rgba(40, 20, 10, 0.25));
+		animation: bob 3.5s ease-in-out infinite;
+	}
+
+	.announce__lantern {
+		left: -0.35rem;
+		top: -0.85rem;
+	}
+
+	.announce__sign {
+		right: -0.2rem;
+		top: -0.65rem;
+		animation-delay: 0.6s;
+	}
+
+	.announce__title {
+		margin: 0 0 0.85rem;
+		font-size: clamp(2rem, 6vw, 3rem);
+		color: var(--color-ink);
+	}
+
+	.announce__dates {
+		margin: 0;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.55rem;
+		flex-wrap: wrap;
+		font-size: clamp(1rem, 2.4vw, 1.15rem);
+		color: var(--color-ink-soft);
+	}
+
+	.announce__cal {
+		font-size: 1.2rem;
+	}
+
+	.announce__sep {
+		margin: 0 0.15rem;
+	}
+
+	@keyframes bob {
+		0%,
+		100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-0.25rem);
+		}
+	}
+
+	@media (max-width: 520px) {
+		.announce__lantern,
+		.announce__sign {
+			display: none;
+		}
+	}
+</style>

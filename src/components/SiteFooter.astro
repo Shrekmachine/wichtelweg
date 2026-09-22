@@ -1,0 +1,128 @@
+---
+const team = [
+	'Judith Moser',
+	'Lilija Kehrgard',
+	'Sabrina Gau',
+];
+---
+
+<footer class="footer" id="impressum">
+	<div class="footer__ground" aria-hidden="true">
+		<span class="footer__mushrooms">🍄🍄</span>
+		<span class="footer__lantern">🪔</span>
+	</div>
+	<div class="footer__inner">
+		<div class="footer__legal">
+			<h2 class="footer__title script">Impressum</h2>
+			<p class="footer__mail">
+				<a href="mailto:westhofenerwichtel@gmx.de">westhofenerwichtel@gmx.de</a>
+			</p>
+			<p class="footer__social">
+				<a href="https://www.instagram.com/westhofenerwichtel/" rel="noopener noreferrer" target="_blank"
+					>Instagram @westhofenerwichtel</a
+				>
+				<span aria-hidden="true"> · </span>
+				<a
+					href="https://www.facebook.com/profile.php?id=61580363623028"
+					rel="noopener noreferrer"
+					target="_blank">Facebook</a
+				>
+			</p>
+		</div>
+		<div class="footer__team">
+			<p class="footer__team-label">Wichtelweg-Team</p>
+			<ul class="footer__names">
+				{team.map((name) => <li>{name}</li>)}
+			</ul>
+			<p class="footer__note">Weitere Angaben folgen mit dem vollständigen Impressum.</p>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		position: relative;
+		margin-top: 2rem;
+		padding: 2.5rem 1rem 2rem;
+		background:
+			linear-gradient(180deg, transparent 0%, rgba(70, 110, 60, 0.18) 18%, #3f6a3a 100%),
+			linear-gradient(180deg, transparent, #2f4f2c 70%);
+		color: var(--color-snow);
+	}
+
+	.footer__ground {
+		position: absolute;
+		inset-inline: 1rem;
+		bottom: 0.6rem;
+		display: flex;
+		justify-content: space-between;
+		pointer-events: none;
+		font-size: 1.6rem;
+		opacity: 0.9;
+	}
+
+	.footer__inner {
+		position: relative;
+		z-index: 1;
+		max-width: 58rem;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 1.5rem;
+		padding: 1.25rem 1.35rem 2.5rem;
+		background:
+			radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, 0.28), transparent 50%),
+			linear-gradient(145deg, var(--color-parchment), var(--color-parchment-deep));
+		color: var(--color-ink);
+		border: 2px solid #c4a574;
+		border-radius: 1rem;
+		box-shadow: var(--shadow-soft);
+	}
+
+	.footer__title {
+		margin: 0 0 0.5rem;
+		font-size: 2rem;
+	}
+
+	.footer__mail,
+	.footer__social,
+	.footer__note,
+	.footer__team-label {
+		margin: 0.35rem 0;
+	}
+
+	.footer__team-label {
+		font-weight: 700;
+	}
+
+	.footer__names {
+		list-style: none;
+		margin: 0.35rem 0;
+		padding: 0;
+		display: flex;
+		flex-wrap: wrap;
+		gap: 0.25rem 0.5rem;
+	}
+
+	.footer__names li:not(:last-child)::after {
+		content: ' ·';
+		margin-left: 0.5rem;
+		opacity: 0.55;
+	}
+
+	.footer__note {
+		font-size: 0.9rem;
+		color: var(--color-ink-soft);
+	}
+
+	.footer a {
+		color: var(--color-forest);
+		font-weight: 600;
+	}
+
+	@media (max-width: 640px) {
+		.footer__inner {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

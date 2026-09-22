@@ -1,0 +1,154 @@
+---
+import { Image } from 'astro:assets';
+import gewinnspielArt from '../assets/gewinnspiel.jpg';
+---
+
+<section class="extras" aria-label="Comics und Gewinnspiel">
+	<article class="extras__comics wood-card" id="comics">
+		<p class="extras__eyebrow">Comics</p>
+		<h2 class="extras__title script">Coming soon</h2>
+		<p class="extras__text">Hier entstehen bald kleine Wichtelgeschichten zum Anschauen und Mitlesen.</p>
+		<span class="extras__book" aria-hidden="true">📖</span>
+	</article>
+
+	<article class="extras__game parchment-card" id="gewinnspiel">
+		<h2 class="extras__title script">Gewinnspiel</h2>
+		<p class="extras__text">
+			Seid ihr Wichteldetektive? Entlang des Weges warten Buchstaben und eine kleine Überraschung.
+		</p>
+		<div class="extras__preview">
+			<Image
+				src={gewinnspielArt}
+				alt="Hinweis zum Wichtel-Gewinnspiel mit Briefkasten und Herbstwald"
+				widths={[480, 720, 960]}
+				sizes="(max-width: 700px) 90vw, 420px"
+			/>
+		</div>
+		<a class="extras__btn" href="#gewinnspiel">Zum Gewinnspiel</a>
+	</article>
+</section>
+
+<style>
+	.extras {
+		max-width: 64rem;
+		margin: 0 auto;
+		padding: 1.75rem 1rem 1rem;
+		display: grid;
+		grid-template-columns: 1fr 1.15fr;
+		gap: 1.25rem;
+		align-items: stretch;
+	}
+
+	.wood-card,
+	.parchment-card {
+		position: relative;
+		padding: 1.35rem 1.25rem 1.5rem;
+		border-radius: 0.85rem;
+		overflow: hidden;
+	}
+
+	.wood-card {
+		color: var(--color-snow);
+		background:
+			linear-gradient(180deg, rgba(255, 220, 160, 0.1), transparent 40%),
+			repeating-linear-gradient(
+				90deg,
+				#3a2416 0px,
+				#4a3020 4px,
+				#3a2416 8px,
+				#2e1c10 12px,
+				#46301e 16px,
+				#3a2416 22px
+			);
+		border: 3px solid #24160e;
+		box-shadow: var(--shadow-soft);
+		min-height: 12rem;
+	}
+
+	.parchment-card {
+		color: var(--color-ink);
+		background:
+			radial-gradient(ellipse at 15% 0%, rgba(255, 255, 255, 0.4), transparent 50%),
+			linear-gradient(145deg, var(--color-parchment), var(--color-parchment-deep));
+		border: 2px solid #c4a574;
+		box-shadow: var(--shadow-soft);
+	}
+
+	.extras__eyebrow {
+		margin: 0;
+		font-size: 0.85rem;
+		letter-spacing: 0.06em;
+		text-transform: uppercase;
+		opacity: 0.85;
+	}
+
+	.extras__title {
+		margin: 0.2rem 0 0.55rem;
+		font-size: clamp(1.9rem, 4vw, 2.5rem);
+	}
+
+	.wood-card .extras__title {
+		color: var(--color-snow);
+	}
+
+	.extras__text {
+		margin: 0;
+		font-size: 0.98rem;
+	}
+
+	.extras__book {
+		display: inline-block;
+		margin-top: 1rem;
+		font-size: 1.8rem;
+	}
+
+	.extras__preview {
+		margin: 1rem 0;
+		border-radius: 0.75rem;
+		overflow: hidden;
+		border: 2px solid rgba(90, 58, 36, 0.2);
+		box-shadow: 0 6px 14px rgba(58, 36, 22, 0.12);
+	}
+
+	.extras__preview :global(img) {
+		width: 100%;
+		aspect-ratio: 16 / 10;
+		object-fit: cover;
+		object-position: center;
+	}
+
+	.extras__btn {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.35rem;
+		margin-top: 0.25rem;
+		padding: 0.55rem 1.1rem;
+		border-radius: 999px;
+		background: var(--color-wood-mid);
+		color: var(--color-snow);
+		text-decoration: none;
+		font-weight: 700;
+		box-shadow: 0 4px 0 #2a1810;
+		transition:
+			transform 0.15s ease,
+			background 0.15s ease;
+	}
+
+	.extras__btn::after {
+		content: '›';
+		font-size: 1.2em;
+		line-height: 1;
+	}
+
+	.extras__btn:hover,
+	.extras__btn:focus-visible {
+		background: var(--color-wood);
+		transform: translateY(1px);
+	}
+
+	@media (max-width: 760px) {
+		.extras {
+			grid-template-columns: 1fr;
+		}
+	}
+</style>

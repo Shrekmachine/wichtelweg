@@ -1,0 +1,145 @@
+---
+import { Image } from 'astro:assets';
+import galerie1 from '../assets/site/galerie-1.jpg';
+import galerie2 from '../assets/site/galerie-2.jpg';
+import galerie3 from '../assets/site/galerie-3.jpg';
+
+const photos = [
+	{
+		src: galerie1,
+		alt: 'Holzschild „Wichtelweg“ mit Laterne und roter Wichtelmütze im Abendlicht',
+		rotate: '-2.2deg',
+	},
+	{
+		src: galerie2,
+		alt: 'Ein Wichtel sitzt in einem kleinen Segelboot vor dem Dorf',
+		rotate: '1.4deg',
+	},
+	{
+		src: galerie3,
+		alt: 'Ein Wichtel mit Brille liest bei Laternenlicht in einem Buch',
+		rotate: '-1.1deg',
+	},
+];
+---
+
+<section class="gallery" id="bilder" aria-labelledby="bilder-title">
+	<header class="gallery__head">
+		<h2 id="bilder-title" class="gallery__title script">
+			Bilder <span class="gallery__heart" aria-hidden="true">♥</span>
+		</h2>
+		<p class="gallery__lede">Klickt euch durch unsere Wichtelwelt</p>
+	</header>
+
+	<ul class="gallery__grid">
+		{
+			photos.map((photo) => (
+				<li class="gallery__item" style={`--tilt: ${photo.rotate}`}>
+					<figure class="polaroid">
+						<Image src={photo.src} alt={photo.alt} widths={[320, 480, 640]} sizes="(max-width: 700px) 80vw, 280px" />
+						<span class="polaroid__lens" aria-hidden="true" title="Ansehen" />
+					</figure>
+				</li>
+			))
+		}
+	</ul>
+</section>
+
+<style>
+	.gallery {
+		padding: clamp(2rem, 5vw, 3.5rem) 1rem 1rem;
+		max-width: 64rem;
+		margin: 0 auto;
+		text-align: center;
+	}
+
+	.gallery__title {
+		margin: 0;
+		font-size: clamp(2.4rem, 6vw, 3.4rem);
+		color: var(--color-ink);
+	}
+
+	.gallery__heart {
+		color: #c45a2a;
+		font-size: 0.55em;
+		vertical-align: middle;
+		margin-left: 0.15em;
+	}
+
+	.gallery__lede {
+		margin: 0.35rem 0 1.75rem;
+		color: var(--color-ink-soft);
+		font-size: 1.05rem;
+	}
+
+	.gallery__grid {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: clamp(1rem, 3vw, 1.75rem);
+		align-items: start;
+	}
+
+	.polaroid {
+		margin: 0;
+		position: relative;
+		background: #fffdf8;
+		padding: 0.7rem 0.7rem 1.6rem;
+		border-radius: 0.2rem;
+		box-shadow: var(--shadow-soft);
+		transform: rotate(var(--tilt, 0deg));
+		transition:
+			transform 0.25s ease,
+			box-shadow 0.25s ease;
+	}
+
+	.polaroid:hover,
+	.polaroid:focus-within {
+		transform: rotate(0deg) translateY(-0.25rem) scale(1.02);
+		box-shadow: 0 16px 32px rgba(58, 36, 22, 0.22);
+	}
+
+	.polaroid :global(img) {
+		width: 100%;
+		aspect-ratio: 4 / 3;
+		object-fit: cover;
+		border-radius: 0.1rem;
+	}
+
+	.polaroid__lens {
+		position: absolute;
+		right: 0.85rem;
+		bottom: 0.45rem;
+		width: 1.15rem;
+		height: 1.15rem;
+		border: 2px solid var(--color-wood-mid);
+		border-radius: 50%;
+		opacity: 0.7;
+	}
+
+	.polaroid__lens::after {
+		content: '';
+		position: absolute;
+		right: -0.35rem;
+		bottom: -0.2rem;
+		width: 0.55rem;
+		height: 2px;
+		background: var(--color-wood-mid);
+		transform: rotate(40deg);
+		border-radius: 2px;
+	}
+
+	@media (max-width: 720px) {
+		.gallery__grid {
+			grid-template-columns: 1fr;
+			max-width: 20rem;
+			margin-inline: auto;
+		}
+
+		.polaroid {
+			transform: none;
+		}
+	}
+</style>

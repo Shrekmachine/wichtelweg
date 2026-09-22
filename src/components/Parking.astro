@@ -1,0 +1,88 @@
+---
+---
+
+<section class="parking" id="parkplaetze" aria-labelledby="parking-title">
+	<div class="parking__plank">
+		<div class="parking__icon" aria-hidden="true">
+			<span class="parking__badge">P</span>
+		</div>
+		<div class="parking__copy">
+			<h2 id="parking-title" class="parking__title script">Parkplätze</h2>
+			<p class="parking__text">Sonntags erlaubt: REWE, Netto und Schulhof</p>
+		</div>
+		<span class="parking__sign" aria-hidden="true">🪧</span>
+	</div>
+</section>
+
+<style>
+	.parking {
+		padding: 1.75rem 1rem 0.5rem;
+	}
+
+	.parking__plank {
+		max-width: 58rem;
+		margin: 0 auto;
+		display: grid;
+		grid-template-columns: auto 1fr auto;
+		align-items: center;
+		gap: 1rem 1.25rem;
+		padding: 1rem 1.35rem;
+		color: var(--color-snow);
+		background:
+			linear-gradient(180deg, rgba(255, 220, 160, 0.1), transparent 45%),
+			repeating-linear-gradient(
+				90deg,
+				#3a2416 0px,
+				#4a3020 4px,
+				#3a2416 8px,
+				#2e1c10 12px,
+				#46301e 16px,
+				#3a2416 22px
+			);
+		border: 3px solid #24160e;
+		border-radius: 0.35rem;
+		box-shadow:
+			var(--shadow-soft),
+			inset 0 1px 0 rgba(255, 230, 180, 0.16);
+	}
+
+	.parking__badge {
+		display: grid;
+		place-items: center;
+		width: 2.6rem;
+		height: 2.6rem;
+		border-radius: 0.35rem;
+		background: #2f5fbf;
+		color: #fff;
+		font-weight: 700;
+		font-size: 1.35rem;
+		box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.35);
+	}
+
+	.parking__title {
+		margin: 0;
+		font-size: clamp(1.8rem, 4vw, 2.4rem);
+		color: var(--color-snow);
+	}
+
+	.parking__text {
+		margin: 0.15rem 0 0;
+		font-size: 1.02rem;
+		opacity: 0.95;
+	}
+
+	.parking__sign {
+		font-size: 1.8rem;
+		filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.35));
+	}
+
+	@media (max-width: 560px) {
+		.parking__plank {
+			grid-template-columns: auto 1fr;
+		}
+
+		.parking__sign {
+			display: none;
+		}
+	}
+</style>
