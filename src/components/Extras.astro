@@ -1,7 +1,6 @@
 ---
 import { Image } from 'astro:assets';
 import comicsBoard from '../assets/site/comics-board.png';
-import gewinnspielArt from '../assets/gewinnspiel.jpg';
 import lantern from '../assets/site/decor-lantern-grass.png';
 import mushrooms from '../assets/site/decor-mushrooms-grass.png';
 import CornerDecor from './CornerDecor.astro';
@@ -9,7 +8,7 @@ import CornerDecor from './CornerDecor.astro';
 
 <section class="extras" aria-label="Comics und Gewinnspiel">
 	<CornerDecor src={mushrooms} corner="left" size="clamp(3.25rem, 6vw, 4.5rem)" bottom="-0.5rem" />
-	<CornerDecor src={lantern} corner="right" size="clamp(3.25rem, 6vw, 4.5rem)" bottom="-2.75rem" />
+	<CornerDecor src={lantern} corner="right" size="clamp(3.25rem, 6vw, 4.5rem)" bottom="-0.5rem" />
 	<article class="extras__comics" id="comics">
 		<h2 class="visually-hidden">Comics — Coming soon</h2>
 		<Image
@@ -21,21 +20,13 @@ import CornerDecor from './CornerDecor.astro';
 		/>
 	</article>
 
-	<article class="extras__game" id="gewinnspiel">
+	<article class="extras__game">
 		<div class="extras__game-inner">
 			<h2 class="extras__title script">Gewinnspiel</h2>
 			<p class="extras__text">
 				Seid ihr Wichteldetektive? Entlang des Weges warten Buchstaben und eine kleine Überraschung.
 			</p>
-			<div class="extras__preview">
-				<Image
-					src={gewinnspielArt}
-					alt="Hinweis zum Wichtel-Gewinnspiel mit Briefkasten und Herbstwald"
-					widths={[480, 720, 960]}
-					sizes="(max-width: 700px) 90vw, 420px"
-				/>
-			</div>
-			<a class="extras__btn" href="#gewinnspiel">Zum Gewinnspiel</a>
+			<a class="extras__btn" href="/gewinnspiel">Zum Gewinnspiel</a>
 		</div>
 	</article>
 </section>
@@ -90,21 +81,6 @@ import CornerDecor from './CornerDecor.astro';
 	.extras__text {
 		margin: 0;
 		font-size: 0.98rem;
-	}
-
-	.extras__preview {
-		margin: 1rem 0;
-		border-radius: 0.75rem;
-		overflow: hidden;
-		border: 2px solid rgba(90, 58, 36, 0.2);
-		box-shadow: 0 6px 14px rgba(58, 36, 22, 0.12);
-	}
-
-	.extras__preview :global(img) {
-		width: 100%;
-		aspect-ratio: 16 / 10;
-		object-fit: cover;
-		object-position: center;
 	}
 
 	.extras__btn {

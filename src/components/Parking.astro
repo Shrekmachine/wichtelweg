@@ -1,78 +1,36 @@
 ---
 import { Image } from 'astro:assets';
-import woodPlank from '../assets/site/wood-plank-banner.png';
-import lantern from '../assets/site/decor-lantern-grass.png';
-import mushrooms from '../assets/site/decor-mushrooms-grass.png';
-import CornerDecor from './CornerDecor.astro';
+import parkingBand from '../assets/site/parkplaetze-band.jpg';
 ---
 
 <section class="parking" id="parkplaetze" aria-labelledby="parking-title">
-	<CornerDecor src={mushrooms} corner="left" size="clamp(3.25rem, 7vw, 4.75rem)" bottom="0.25rem" />
-	<CornerDecor src={lantern} corner="right" size="clamp(3.25rem, 7vw, 4.75rem)" bottom="0.25rem" />
 	<div class="parking__board">
 		<Image
-			src={woodPlank}
-			alt=""
-			class="parking__wood"
+			src={parkingBand}
+			alt="Parkplätze: Sonntags erlaubt bei REWE, Netto und Schulhof"
 			widths={[640, 960, 1280]}
 			sizes="min(58rem, 100vw)"
-			aria-hidden="true"
+			class="parking__art"
 		/>
-		<div class="parking__copy">
-			<h2 id="parking-title" class="parking__title script">Parkplätze</h2>
-			<p class="parking__text">Sonntags erlaubt: REWE, Netto und Schulhof</p>
-		</div>
 	</div>
+	<h2 id="parking-title" class="visually-hidden">Parkplätze</h2>
 </section>
 
 <style>
 	.parking {
-		position: relative;
 		padding: 1.75rem 1rem 0.5rem;
 	}
 
 	.parking__board {
-		position: relative;
-		z-index: 1;
-		max-width: 42rem;
+		max-width: 58rem;
 		margin: 0 auto;
-		isolation: isolate;
 	}
 
-	.parking__wood {
+	.parking__art {
 		width: 100%;
 		height: auto;
 		display: block;
+		border-radius: 0.5rem;
 		filter: drop-shadow(0 12px 22px rgba(40, 22, 10, 0.28));
-	}
-
-	.parking__copy {
-		position: absolute;
-		inset: 18% 12% 22%;
-		display: grid;
-		align-content: center;
-		justify-items: center;
-		text-align: center;
-		color: var(--color-snow);
-		text-shadow: 0 2px 6px rgba(20, 10, 5, 0.55);
-		pointer-events: none;
-	}
-
-	.parking__title {
-		margin: 0;
-		font-size: clamp(1.9rem, 5vw, 2.6rem);
-		color: var(--color-snow);
-	}
-
-	.parking__text {
-		margin: 0.2rem 0 0;
-		font-size: clamp(0.92rem, 2.2vw, 1.05rem);
-		font-weight: 600;
-	}
-
-	@media (max-width: 520px) {
-		.parking__copy {
-			inset: 16% 10% 20%;
-		}
 	}
 </style>
