@@ -1,10 +1,12 @@
 # Westhofener Wichtelweg
 
-Website für den Westhofener Wichtelweg – **Astro** (statisch) und **Cloudflare** (Workers Static Assets).
+Website für den Westhofener Wichtelweg – **Astro** (statisch) und **Cloudflare Pages**.
 
 - Geplante Domain: [westhofenerwichtel.de](https://westhofenerwichtel.de)
+- GitHub: [Shrekmachine/wichtelweg](https://github.com/Shrekmachine/wichtelweg)
+- Pages: [wichtelweg.pages.dev](https://wichtelweg.pages.dev) (nach erstem Deploy)
+- Deploy-Details: [`deployed.md`](./deployed.md)
 - Design-Vorgabe: `design/vorgabe-homepage-landingpage.jpg`
-- Bildmaterial: `src/assets/`
 
 ## Voraussetzungen
 
@@ -25,12 +27,15 @@ Dev-Server: [http://localhost:4321](http://localhost:4321)
 ```sh
 npm run build
 npm run preview
-npm run deploy
 ```
 
-Vor dem ersten Deploy: `npx wrangler login`.
+Produktion läuft über **Cloudflare Pages** (Git-Connect auf `main`: Build `npm run build`, Output `dist`).
 
-Git-Connect in Cloudflare: Build `npm run build`, Assets aus `dist/` (siehe `wrangler.jsonc`). Domain `westhofenerwichtel.de` später als Custom Domain hinterlegen.
+Manuell lokal (nach `npx wrangler login`):
+
+```sh
+npm run pages:deploy
+```
 
 ## Struktur
 
@@ -45,6 +50,7 @@ Git-Connect in Cloudflare: Build `npm run build`, Assets aus `dist/` (siehe `wra
 │   ├── layouts/
 │   └── pages/
 ├── astro.config.mjs
+├── deployed.md
 └── wrangler.jsonc
 ```
 

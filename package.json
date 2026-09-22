@@ -5,13 +5,14 @@
   "engines": {
     "node": ">=22.12.0"
   },
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "deploy": "npm run build && wrangler deploy",
-    "astro": "astro"
-  },
+	"scripts": {
+		"dev": "astro dev",
+		"build": "astro build",
+		"preview": "astro preview",
+		"deploy": "npm run build && wrangler deploy",
+		"pages:deploy": "npm run build && wrangler pages deploy dist --project-name=wichtelweg",
+		"astro": "astro"
+	},
   "dependencies": {
     "astro": "^7.3.3"
   },
