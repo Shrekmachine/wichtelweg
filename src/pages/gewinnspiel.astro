@@ -3,7 +3,7 @@ import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import SiteNav from '../components/SiteNav.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import gewinnspielArt from '../assets/gewinnspiel.jpg';
+import gewinnspielArt from '../assets/site/gewinnspiel-plakat.jpg';
 ---
 
 <Layout
@@ -13,7 +13,7 @@ import gewinnspielArt from '../assets/gewinnspiel.jpg';
 	<SiteNav />
 	<main class="gewinnspiel">
 		<div class="gewinnspiel__card">
-			<a class="gewinnspiel__back" href="/#gewinnspiel">‹ Zurück zur Startseite</a>
+			<a class="gewinnspiel__back" href="/">‹ Zurück zur Startseite</a>
 			<h1 class="gewinnspiel__title script">Gewinnspiel</h1>
 			<Image
 				src={gewinnspielArt}

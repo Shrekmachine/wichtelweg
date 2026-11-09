@@ -1,37 +1,23 @@
 ---
 import { Image } from 'astro:assets';
-import galerie1 from '../assets/site/galerie-1.jpg';
-import galerie2 from '../assets/site/galerie-2.jpg';
-import galerie3 from '../assets/site/galerie-3.jpg';
-import lantern from '../assets/site/decor-lantern-grass.png';
-import mushrooms from '../assets/site/decor-mushrooms-grass.png';
-import CornerDecor from './CornerDecor.astro';
+import collage1 from '../assets/site/galerie-collage-1.jpg';
+import collage2 from '../assets/site/galerie-collage-2.jpg';
 
 const photos = [
 	{
-		src: galerie1,
-		alt: 'Holzschild „Wichtelweg” mit Laterne und roter Wichtelmütze im Abendlicht',
-		rotate: '-2.2deg',
-		position: 'left center',
+		src: collage1,
+		alt: 'Fotocollage: Wichtelhäuser und Stationen entlang des Westhofener Wichtelwegs',
+		rotate: '-1.4deg',
 	},
 	{
-		src: galerie2,
-		alt: 'Ein Wichtel sitzt in einem kleinen Segelboot vor dem Dorf',
-		rotate: '1.4deg',
-		position: 'center',
-	},
-	{
-		src: galerie3,
-		alt: 'Ein Wichtel mit Brille liest bei Laternenlicht in einem Buch',
-		rotate: '-1.1deg',
-		position: 'center',
+		src: collage2,
+		alt: 'Fotocollage: Weitere Wichtelstationen – kleine Werke, große Magie',
+		rotate: '1.2deg',
 	},
 ];
 ---
 
 <section class="gallery" id="bilder" aria-labelledby="bilder-title">
-	<CornerDecor src={lantern} corner="left" />
-	<CornerDecor src={mushrooms} corner="right" />
 	<header class="gallery__head">
 		<h2 id="bilder-title" class="gallery__title script">
 			Bilder <span class="gallery__heart" aria-hidden="true">♥</span>
@@ -42,9 +28,14 @@ const photos = [
 	<ul class="gallery__grid">
 		{
 			photos.map((photo) => (
-				<li class="gallery__item" style={`--tilt: ${photo.rotate}; --pos: ${photo.position}`}>
+				<li class="gallery__item" style={`--tilt: ${photo.rotate}`}>
 					<figure class="polaroid">
-						<Image src={photo.src} alt={photo.alt} width={photo.src.width} height={photo.src.height} />
+						<Image
+							src={photo.src}
+							alt={photo.alt}
+							widths={[480, 720, 960, 1200]}
+							sizes="(max-width: 720px) 92vw, min(28rem, 90vw)"
+						/>
 						<span class="polaroid__lens" aria-hidden="true" title="Ansehen" />
 					</figure>
 				</li>
@@ -88,12 +79,19 @@ const photos = [
 
 	.gallery__grid {
 		list-style: none;
-		margin: 0;
+		margin: 0 auto;
 		padding: 0;
-		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		gap: clamp(1rem, 3vw, 1.75rem);
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
 		align-items: start;
+		gap: clamp(1rem, 3vw, 1.75rem);
+		width: 100%;
+	}
+
+	.gallery__item {
+		width: min(100%, 22rem);
+		flex: 0 1 22rem;
 	}
 
 	.polaroid {
@@ -111,15 +109,14 @@ const photos = [
 
 	.polaroid:hover,
 	.polaroid:focus-within {
-		transform: rotate(0deg) translateY(-0.25rem) scale(1.02);
+		transform: rotate(0deg) translateY(-0.25rem) scale(1.015);
 		box-shadow: 0 16px 32px rgba(58, 36, 22, 0.22);
 	}
 
 	.polaroid :global(img) {
 		width: 100%;
-		aspect-ratio: 3 / 2;
-		object-fit: cover;
-		object-position: var(--pos, center);
+		height: auto;
+		display: block;
 		border-radius: 0.1rem;
 	}
 
@@ -147,10 +144,9 @@ const photos = [
 	}
 
 	@media (max-width: 720px) {
-		.gallery__grid {
-			grid-template-columns: 1fr;
-			max-width: 20rem;
-			margin-inline: auto;
+		.gallery__item {
+			width: min(100%, 24rem);
+			flex-basis: min(100%, 24rem);
 		}
 
 		.polaroid {

@@ -1,103 +1,50 @@
 ---
-import { Image } from 'astro:assets';
-import lantern from '../assets/site/decor-lantern-grass.png';
-import mushrooms from '../assets/site/decor-mushrooms-grass.png';
-import CornerDecor from './CornerDecor.astro';
+import plakat1x from '../assets/site/Wichtelweg_Plakat_freigestellt.webp?url';
+import plakat2x from '../assets/site/Wichtelweg_Plakat_freigestellt@2x.webp?url';
 ---
 
-<section class="announce" aria-labelledby="announce-title">
-	<div class="announce__scroll">
-		<Image
-			src={lantern}
-			alt=""
-			class="announce__lantern"
-			widths={[160, 240]}
-			sizes="120px"
-			aria-hidden="true"
+<section class="info" aria-labelledby="info-title">
+	<figure class="info__figure">
+		<img
+			src={plakat1x}
+			srcset={`${plakat1x} 1x, ${plakat2x} 2x`}
+			width="500"
+			alt="Westhofener Wichtelweg: ab 21.11., kostenfrei, 2,5 km Rundweg für die ganze Familie"
+			class="info__art"
+			decoding="async"
+			loading="lazy"
 		/>
-		<CornerDecor src={mushrooms} corner="right" size="clamp(3.5rem, 9vw, 5rem)" bottom="-1rem" />
-		<h2 id="announce-title" class="announce__title script">Die Wichtel kommen wieder!</h2>
-		<p class="announce__dates">
-			<strong>Eröffnung:</strong> 21.11.2026
-			<span class="announce__sep" aria-hidden="true">–</span>
-			<strong>Ende:</strong> 10.01.2027
-		</p>
-	</div>
+		<figcaption class="visually-hidden">
+			<h2 id="info-title">Ein besonderer Weg für die ganze Familie</h2>
+			<p>
+				Ab 21.11. bis 10.01. — Gemeinsam den Zauber der Weihnachtszeit erleben. Kostenfrei. 2,5 km langer
+				Rundweg, kinderwagengeeignet.
+			</p>
+		</figcaption>
+	</figure>
 </section>
 
 <style>
-	.announce {
-		padding: clamp(1.5rem, 4vw, 2.75rem) 1rem 0.5rem;
+	.info {
+		padding: clamp(1.25rem, 3.5vw, 2.25rem) 1rem 0.5rem;
+		display: flex;
+		justify-content: center;
 	}
 
-	.announce__scroll {
-		position: relative;
-		max-width: 44rem;
+	.info__figure {
 		margin: 0 auto;
-		padding: clamp(1.75rem, 4vw, 2.5rem) clamp(1.25rem, 4vw, 2.75rem);
-		text-align: center;
-		color: var(--color-ink);
-		background:
-			radial-gradient(ellipse at 20% 0%, rgba(255, 255, 255, 0.35), transparent 45%),
-			linear-gradient(135deg, var(--color-parchment) 0%, var(--color-parchment-deep) 55%, #dfc79a 100%);
-		border: 2px solid #c4a574;
-		border-radius: 1.25rem 1.25rem 1.5rem 1.5rem / 0.85rem 0.85rem 1.1rem 1.1rem;
-		box-shadow:
-			var(--shadow-soft),
-			inset 0 0 0 1px rgba(255, 248, 230, 0.55),
-			inset 0 0 40px rgba(140, 100, 50, 0.08);
+		max-width: min(92vw, 28rem);
+		width: 100%;
+		display: flex;
+		justify-content: center;
 	}
 
-	.announce__lantern {
-		position: absolute;
-		left: -1.1rem;
-		top: -1.4rem;
-		width: clamp(4.5rem, 14vw, 6.5rem);
+	.info__art {
+		width: 100%;
+		max-width: 500px;
 		height: auto;
-		filter: drop-shadow(0 6px 10px rgba(40, 20, 10, 0.28));
-		animation: bob 3.5s ease-in-out infinite;
-	}
-
-	.announce__title {
-		position: relative;
-		z-index: 1;
-		margin: 0 0 0.85rem;
-		font-size: clamp(2rem, 6vw, 3rem);
-		color: var(--color-ink);
-	}
-
-	.announce__dates {
-		position: relative;
-		z-index: 1;
-		margin: 0;
-		font-size: clamp(1rem, 2.4vw, 1.15rem);
-		color: var(--color-ink-soft);
-	}
-
-	.announce__sep {
-		margin: 0 0.35rem;
-	}
-
-	@keyframes bob {
-		0%,
-		100% {
-			transform: translateY(0);
-		}
-		50% {
-			transform: translateY(-0.25rem);
-		}
-	}
-
-	@media (max-width: 560px) {
-		.announce__lantern {
-			left: 50%;
-			top: -2.4rem;
-			transform: translateX(-50%);
-			animation: none;
-		}
-
-		.announce__scroll {
-			padding-top: 3.2rem;
-		}
+		display: block;
+		margin-inline: auto;
+		filter: drop-shadow(0 12px 24px rgba(42, 28, 16, 0.28));
 	}
 </style>
