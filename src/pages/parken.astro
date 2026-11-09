@@ -1,0 +1,75 @@
+---
+import { Image } from 'astro:assets';
+import Layout from '../layouts/Layout.astro';
+import SiteNav from '../components/SiteNav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import parkenArt from '../assets/site/parken-plakat.jpg';
+---
+
+<Layout
+	title="Parkplätze — Westhofener Wichtelweg"
+	description="Hinweise zum Parken am Westhofener Wichtelweg: Startpunkt und erlaubte Parkplätze."
+>
+	<SiteNav />
+	<main class="parken">
+		<div class="parken__card">
+			<a class="parken__back" href="/">‹ Zurück zur Startseite</a>
+			<h1 class="parken__title script">Parkplätze</h1>
+			<Image
+				src={parkenArt}
+				alt="Parken & Starten: Start am alten Osthofener Weg (Skaterplatz). Parken Wochentags an Brückenstraße und Am alten Osthofener Weg; samstags zusätzlich Schulhof OHS; sonntags und feiertags auch REWE und Netto."
+				widths={[480, 720, 960, 1200, 1600]}
+				sizes="(max-width: 760px) 92vw, 640px"
+				class="parken__art"
+			/>
+		</div>
+	</main>
+	<SiteFooter />
+</Layout>
+
+<style>
+	.parken {
+		padding: clamp(1.5rem, 5vw, 3rem) 1rem 2rem;
+		max-width: 48rem;
+		margin: 0 auto;
+	}
+
+	.parken__card {
+		padding: clamp(1.5rem, 4vw, 2.5rem);
+		text-align: center;
+		color: var(--color-ink);
+		background:
+			radial-gradient(ellipse at 18% 0%, rgba(255, 255, 255, 0.35), transparent 55%),
+			linear-gradient(135deg, var(--color-parchment) 0%, var(--color-parchment-deep) 55%, #dfc79a 100%);
+		border: 2px solid #c4a574;
+		border-radius: 1.25rem;
+		box-shadow:
+			var(--shadow-soft),
+			inset 0 0 0 1px rgba(255, 248, 230, 0.55);
+	}
+
+	.parken__back {
+		display: inline-block;
+		margin-bottom: 1rem;
+		font-weight: 700;
+		color: var(--color-forest);
+		text-decoration: none;
+	}
+
+	.parken__back:hover,
+	.parken__back:focus-visible {
+		text-decoration: underline;
+	}
+
+	.parken__title {
+		margin: 0 0 1.25rem;
+		font-size: clamp(2.2rem, 6vw, 3rem);
+	}
+
+	.parken__art {
+		width: 100%;
+		height: auto;
+		border-radius: 0.75rem;
+		box-shadow: 0 10px 24px rgba(58, 36, 22, 0.2);
+	}
+</style>
